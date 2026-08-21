@@ -1,0 +1,8 @@
+{
+  "name": "cub3d",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gcc make xorg libxext-dev libbsd-dev xvfb",
+  "postStartCommand": "bash .devcontainer/start-xvfb.sh",
+  "remoteEnv": {
+    "DISPLAY": ":99"
+  }
+}

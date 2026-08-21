@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrf.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:04:54 by maleca            #+#    #+#             */
-/*   Updated: 2026/08/15 15:27:26 by root             ###   ########.fr       */
+/*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
+/*   Updated: 2026/08/15 15:25:35 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../../includes/libft.h"
 
-void	ft_putnbrf(int n, size_t *count)
+t_list	*ft_lstlast(t_list *lst)
 {
-	long	nb;
+	t_list	*current;
 
-	nb = (long)n;
-	if (nb < 0)
-	{
-		nb *= -1;
-		ft_putcharf('-', count);
-	}
-	if (nb > 9)
-	{
-		ft_putnbrf(nb / 10, count);
-		ft_putcharf(nb % 10 + '0', count);
-	}
-	else
-		ft_putcharf(nb % 10 + '0', count);
+	current = lst;
+	if (current == NULL)
+		return (NULL);
+	while (current->next != NULL)
+		current = current->next;
+	return (current);
 }

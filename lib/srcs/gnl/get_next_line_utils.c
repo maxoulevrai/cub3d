@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 19:04:43 by root              #+#    #+#             */
-/*   Updated: 2026/04/09 19:04:47 by root             ###   ########.fr       */
+/*   Updated: 2026/08/15 15:27:26 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,6 @@ char	*ft_strchr_gnl(char *str, char c)
 		i++;
 	}
 	return (NULL);
-}
-
-void	*ft_calloc(size_t nmemb, size_t siz)
-{
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	if (siz && nmemb > (UINT_MAX / siz))
-		return (NULL);
-	ptr = malloc(nmemb * siz);
-	if (!ptr)
-		return (NULL);
-	while (i < nmemb * siz)
-		ptr[i++] = 0;
-	return (ptr);
 }
 
 char	*ft_strjoin_gnl(char *stash, char *buff)

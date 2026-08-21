@@ -8,7 +8,7 @@ MAGENTA			= \033[35m
 CYAN			= \033[36m
 RESET			= \033[0m
 
-GNL_DIR = srcs/get_next_line/
+GNL_DIR = srcs/gnl/
 PRINTF_DIR = srcs/printf/
 FPRINTF_DIR = srcs/fprintf/
 LIB_DIR = srcs/libft/
@@ -18,18 +18,18 @@ GNL_SRCS = $(GNL_DIR)get_next_line_utils.c \
 			$(GNL_DIR)get_next_line.c
 
 PRINTF_SRCS = $(PRINTF_DIR)ft_printf.c \
-			$(PRINTF_DIR)utils/ft_putaddyf.c \
-			$(PRINTF_DIR)utils/ft_putcharf.c \
-			$(PRINTF_DIR)utils/ft_putnbr_basef.c \
-			$(PRINTF_DIR)utils/ft_putnbrf.c \
-			$(PRINTF_DIR)utils/ft_putstrf.c
+			$(PRINTF_DIR)ft_putaddyf.c \
+			$(PRINTF_DIR)ft_putcharf.c \
+			$(PRINTF_DIR)ft_putnbr_basef.c \
+			$(PRINTF_DIR)ft_putnbrf.c \
+			$(PRINTF_DIR)ft_putstrf.c
 
 FPRINTF_SRCS = $(FPRINTF_DIR)ft_fprintf.c \
-			$(FPRINTF_DIR)utils/ft_putaddyf_fd.c \
-			$(FPRINTF_DIR)utils/ft_putcharf_fd.c \
-			$(FPRINTF_DIR)utils/ft_putnbr_basef_fd.c \
-			$(FPRINTF_DIR)utils/ft_putnbrf_fd.c \
-			$(FPRINTF_DIR)utils/ft_putstrf_fd.c
+			$(FPRINTF_DIR)ft_putaddyf_fd.c \
+			$(FPRINTF_DIR)ft_putcharf_fd.c \
+			$(FPRINTF_DIR)ft_putnbr_basef_fd.c \
+			$(FPRINTF_DIR)ft_putnbrf_fd.c \
+			$(FPRINTF_DIR)ft_putstrf_fd.c
 
 LIB_SRCS = $(LIB_DIR)ft_abs.c \
 			$(LIB_DIR)ft_isalpha.c \

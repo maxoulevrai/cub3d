@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrf.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:04:54 by maleca            #+#    #+#             */
-/*   Updated: 2026/08/15 15:27:26 by root             ###   ########.fr       */
+/*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
+/*   Updated: 2026/08/15 15:24:30 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "cub3d.h"
 
-void	ft_putnbrf(int n, size_t *count)
+int	main(int argc, char **argv)
 {
-	long	nb;
+	t_game	game;
+	int		ret;
 
-	nb = (long)n;
-	if (nb < 0)
+	if (argc != 2)
 	{
-		nb *= -1;
-		ft_putcharf('-', count);
+		ft_error("Usage: ./cub3D <map.cub>");
+		return (1);
 	}
-	if (nb > 9)
+	ret = init_game(&game);
+	if (ret != 0)
+		return (ret);
+	ret = parse_file(&game, argv[1]);
+	if (ret != 0)
 	{
-		ft_putnbrf(nb / 10, count);
-		ft_putcharf(nb % 10 + '0', count);
+		free_game(&game);
+		return (ret);
 	}
-	else
-		ft_putcharf(nb % 10 + '0', count);
+	ret = render_frame(&game);
+	free_game(&game);
+	return (ret);
 }
