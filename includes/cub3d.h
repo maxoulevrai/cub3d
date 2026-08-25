@@ -106,15 +106,18 @@ typedef struct s_game
 	t_player	player;
 	t_texture	texture[TEX_COUNT];
 	int		key[KEY_COUNT];
+	int			config_mask;
 	double		move_speed;
 	double		rot_speed;
 	int		quit;
 } t_game;
 
 int		init_game(t_game *game);
+int		init_mlx(t_game *game);
 int		parse_file(t_game *game, char *path);
 int		parse_map(t_game *game, char **lines, int count);
 int		render_frame(t_game *game);
+int		close_game(t_game *game);
 void	free_game(t_game *game);
 void	ft_error(const char *message);
 

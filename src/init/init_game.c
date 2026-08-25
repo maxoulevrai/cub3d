@@ -63,6 +63,14 @@ int	init_game(t_game *game)
 
 	if (game == NULL)
 		return (1);
+	game->mlx.mlx_ptr = NULL;
+	game->mlx.win_ptr = NULL;
+	game->mlx.img_ptr = NULL;
+	game->mlx.img_addr = NULL;
+	game->mlx.bpp = 0;
+	game->mlx.line_len = 0;
+	game->mlx.endian = 0;
+	game->config_mask = 0;
 	index = 0;
 	while (index < KEY_COUNT)
 	{
@@ -72,5 +80,36 @@ int	init_game(t_game *game)
 	init_map_defaults(game);
 	init_player_defaults(game);
 	init_texture_defaults(game);
+	return (0);
+}
+
+int	close_game(t_game *game)
+{
+	if (game == NULL)
+		return (1);
+	game->quit = 1;
+	mlx_loop_end(game->mlx.mlx_ptr);
+	return (0);
+}
+
+int	init_mlx(t_game *game)
+{
+	if (game == NULL)
+		return (1);
+	game->mlx.mlx_ptr = mlx_init();
+	if (game->mlx.mlx_ptr == NULL)
+		return (ft_error("MiniLibX initialization failed"), 1);
+	game->mlx.win_ptr = mlx_new_window(game->mlx.mlx_ptr, WIN_WIDTH,
+		WIN_HEIGHT, "cub3D");
+	if (game->mlx.win_ptr == NULL)
+		return (ft_error("Window creation failed"), 1);
+	game->mlx.img_ptr = mlx_new_image(game->mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (game->mlx.img_ptr == NULL)
+		return (ft_error("Image creation failed"), 1);
+	game->mlx.img_addr = mlx_get_data_addr(game->mlx.img_ptr, &game->mlx.bpp,
+		&game->mlx.line_len, &game->mlx.endian);
+	if (game->mlx.img_addr == NULL)
+		return (ft_error("Image buffer creation failed"), 1);
+	mlx_hook(game->mlx.win_ptr, 17, 0, close_game, game);
 	return (0);
 }

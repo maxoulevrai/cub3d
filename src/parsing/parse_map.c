@@ -73,6 +73,37 @@ static int	validate_map_shape(t_game *game, char **grid, int count)
 	return (0);
 }
 
+static char	map_cell(char **grid, int y, int x)
+{
+	if (y < 0 || x < 0 || grid[y] == NULL || grid[y][x] == '\0')
+		return (' ');
+	return (grid[y][x]);
+}
+
+static int	map_is_closed(char **grid, int height)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (grid[y][x] != '\0')
+		{
+			if (grid[y][x] == '0'
+				&& (map_cell(grid, y - 1, x) == ' '
+				|| map_cell(grid, y + 1, x) == ' '
+				|| map_cell(grid, y, x - 1) == ' '
+				|| map_cell(grid, y, x + 1) == ' '))
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 static int	copy_map_lines(char **src, char **dst, int count)
 {
 	int	index;
@@ -106,6 +137,8 @@ int	parse_map(t_game *game, char **lines, int count)
 		return (free_dtab(grid), ft_error("malloc failed"), 1);
 	if (validate_map_shape(game, grid, count) != 0)
 		return (free_dtab(grid), ft_error("Invalid map"), 1);
+	if (map_is_closed(grid, count) == 0)
+		return (free_dtab(grid), ft_error("Map is not closed"), 1);
 	game->map.grid = grid;
 	return (0);
 }
