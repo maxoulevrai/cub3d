@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/15 15:24:30 by root             ###   ########.fr       */
+/*   Updated: 2026/08/26 16:57:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ int		init_game(t_game *game);
 int		init_mlx(t_game *game);
 int		parse_file(t_game *game, char *path);
 int		parse_map(t_game *game, char **lines, int count);
+void	draw_background(t_game *game);
+void	draw_wall(t_game *game, t_ray *ray, int x);
+int		load_textures(t_game *game);
+void	set_texture_coords(t_game *game, t_ray *ray);
 int		render_frame(t_game *game);
 int		close_game(t_game *game);
 void	free_game(t_game *game);

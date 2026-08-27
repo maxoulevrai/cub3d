@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/15 15:24:30 by root             ###   ########.fr       */
+/*   Updated: 2026/08/26 16:56:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	init_mlx(t_game *game)
 	game->mlx.mlx_ptr = mlx_init();
 	if (game->mlx.mlx_ptr == NULL)
 		return (ft_error("MiniLibX initialization failed"), 1);
+	if (load_textures(game) != 0)
+		return (1);
 	game->mlx.win_ptr = mlx_new_window(game->mlx.mlx_ptr, WIN_WIDTH,
 		WIN_HEIGHT, "cub3D");
 	if (game->mlx.win_ptr == NULL)
