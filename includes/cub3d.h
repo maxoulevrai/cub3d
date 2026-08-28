@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/26 16:57:50 by root             ###   ########.fr       */
+/*   Updated: 2026/08/28 14:18:59 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
 # define TEX_COUNT 4
-# define KEY_COUNT 256
+# define KEY_COUNT 65536
 # define ERR_MSG "Error\n"
 
 typedef struct s_color
@@ -121,6 +121,11 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 int		load_textures(t_game *game);
 void	set_texture_coords(t_game *game, t_ray *ray);
 int		render_frame(t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		game_loop(t_game *game);
+void	move_player(t_game *game);
+void	rotate_player(t_game *game, double angle);
 int		close_game(t_game *game);
 void	free_game(t_game *game);
 void	ft_error(const char *message);

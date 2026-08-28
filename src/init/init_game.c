@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/26 16:56:25 by root             ###   ########.fr       */
+/*   Updated: 2026/08/28 14:18:59 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,8 @@ int	init_mlx(t_game *game)
 	if (game->mlx.img_addr == NULL)
 		return (ft_error("Image buffer creation failed"), 1);
 	mlx_hook(game->mlx.win_ptr, 17, 0, close_game, game);
+	mlx_hook(game->mlx.win_ptr, 2, 1L << 0, key_press, game);
+	mlx_hook(game->mlx.win_ptr, 3, 1L << 1, key_release, game);
+	mlx_loop_hook(game->mlx.mlx_ptr, game_loop, game);
 	return (0);
 }

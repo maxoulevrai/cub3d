@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 00:00:00 by root              #+#    #+#              #
-#    Updated: 2026/08/26 16:57:09 by root             ###   ########.fr        #
+#    Updated: 2026/08/28 14:18:59 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRCS = src/main.c \
 		src/render/draw.c \
 		src/render/raycaster.c \
 		src/render/texture.c \
+		src/movement/input.c \
+		src/movement/movement.c \
+		src/movement/rotation.c \
 		src/utils/error.c \
 		src/utils/free.c
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
