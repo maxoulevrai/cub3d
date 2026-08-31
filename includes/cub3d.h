@@ -26,8 +26,15 @@
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
 # define TEX_COUNT 4
-# define KEY_COUNT 65536
+# define KEY_COUNT 256
 # define ERR_MSG "Error\n"
+# define KEY_W 25
+# define KEY_A 38
+# define KEY_S 39
+# define KEY_D 40
+# define KEY_LEFT 113
+# define KEY_RIGHT 114
+# define KEY_ESC 9
 
 typedef struct s_color
 {

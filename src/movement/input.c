@@ -14,19 +14,21 @@
 
 int	key_press(int keycode, t_game *game)
 {
-	if (game == NULL || keycode < 0 || keycode >= KEY_COUNT)
+	if (game == NULL)
 		return (1);
-	if (keycode == 65307)
+	if (keycode == KEY_ESC)
 		return (close_game(game));
-	game->key[keycode] = 1;
+	if (keycode >= 0 && keycode < KEY_COUNT)
+		game->key[keycode] = 1;
 	return (0);
 }
 
 int	key_release(int keycode, t_game *game)
 {
-	if (game == NULL || keycode < 0 || keycode >= KEY_COUNT)
+	if (game == NULL)
 		return (1);
-	game->key[keycode] = 0;
+	if (keycode >= 0 && keycode < KEY_COUNT)
+		game->key[keycode] = 0;
 	return (0);
 }
 

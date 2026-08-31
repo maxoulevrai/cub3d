@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/28 14:19:19 by root             ###   ########.fr       */
+/*   Updated: 2026/08/31 22:40:39 by maleca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ static void	strafe(t_game *game, double direction)
 
 void	move_player(t_game *game)
 {
-	if (game->key['w'])
+	if (game->key[KEY_W])
 		move_direction(game, 1.0);
-	if (game->key['s'])
+	if (game->key[KEY_S])
 		move_direction(game, -1.0);
-	if (game->key['a'])
+	if (game->key[KEY_A])
 		strafe(game, 1.0);
-	if (game->key['d'])
+	if (game->key[KEY_D])
 		strafe(game, -1.0);
-	if (game->key[65361])
+	if (game->key[KEY_LEFT])
 		rotate_player(game, -game->rot_speed);
-	if (game->key[65363])
+	if (game->key[KEY_RIGHT])
 		rotate_player(game, game->rot_speed);
 }
