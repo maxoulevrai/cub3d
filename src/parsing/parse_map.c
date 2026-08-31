@@ -3,106 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/15 00:00:00 by root             ###   ########.fr       */
+/*   Updated: 2026/09/01 00:17:38 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	map_char_ok(char c)
-{
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	if (c == ' ')
-		return (1);
-	return (0);
-}
-
-static int	set_player_dir(t_game *game, char c, int x, int y)
-{
-	if (c == 'N')
-		game->player.dir_x = 0.0, game->player.dir_y = -1.0, game->player.plane_x = 0.66, game->player.plane_y = 0.0;
-	else if (c == 'S')
-		game->player.dir_x = 0.0, game->player.dir_y = 1.0, game->player.plane_x = -0.66, game->player.plane_y = 0.0;
-	else if (c == 'E')
-		game->player.dir_x = 1.0, game->player.dir_y = 0.0, game->player.plane_x = 0.0, game->player.plane_y = 0.66;
-	else if (c == 'W')
-		game->player.dir_x = -1.0, game->player.dir_y = 0.0, game->player.plane_x = 0.0, game->player.plane_y = -0.66;
-	else
-		return (1);
-	game->player.x = (double)x + 0.5;
-	game->player.y = (double)y + 0.5;
-	return (0);
-}
-
-static int	validate_map_shape(t_game *game, char **grid, int count)
-{
-	int		players;
-	int		y;
-	int		x;
-	int		len;
-
-	players = 0;
-	y = 0;
-	while (y < count)
-	{
-		len = (int)ft_strlen(grid[y]);
-		if (len > game->map.width)
-			game->map.width = len;
-		x = 0;
-		while (x < len)
-		{
-			if (map_char_ok(grid[y][x]) == 0)
-				return (1);
-			if (grid[y][x] == 'N' || grid[y][x] == 'S' || grid[y][x] == 'E' || grid[y][x] == 'W')
-			{
-				players++;
-				if (players > 1 || set_player_dir(game, grid[y][x], x, y) != 0)
-					return (1);
-				grid[y][x] = '0';
-			}
-			x++;
-		}
-		y++;
-	}
-	if (players != 1)
-		return (1);
-	return (0);
-}
-
-static char	map_cell(char **grid, int y, int x)
-{
-	if (y < 0 || x < 0 || grid[y] == NULL || grid[y][x] == '\0')
-		return (' ');
-	return (grid[y][x]);
-}
-
-static int	map_is_closed(char **grid, int height)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (grid[y][x] != '\0')
-		{
-			if (grid[y][x] == '0'
-				&& (map_cell(grid, y - 1, x) == ' '
-				|| map_cell(grid, y + 1, x) == ' '
-				|| map_cell(grid, y, x - 1) == ' '
-				|| map_cell(grid, y, x + 1) == ' '))
-				return (0);
-			x++;
-		}
-		y++;
-	}
-	return (1);
-}
 
 static int	copy_map_lines(char **src, char **dst, int count)
 {

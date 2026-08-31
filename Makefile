@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
+#    By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 00:00:00 by root              #+#    #+#              #
-#    Updated: 2026/08/28 14:18:59 by root             ###   ########.fr        #
+#    Updated: 2026/09/01 00:10:29 by yzidani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,7 @@ ifeq ($(UNAME_S),Linux)
 LDLIBS += -lbsd
 endif
 BUILD_DIR = build
-SRCS = src/main.c \
-		src/init/init_game.c \
-		src/parsing/parse_file.c \
-		src/parsing/parse_map.c \
-		src/render/draw.c \
-		src/render/raycaster.c \
-		src/render/texture.c \
-		src/movement/input.c \
-		src/movement/movement.c \
-		src/movement/rotation.c \
-		src/utils/error.c \
-		src/utils/free.c
+SRCS =  $(wildcard src/*.c) $(wildcard src/init/*.c) $(wildcard src/parsing/*.c) $(wildcard src/render/*.c) $(wildcard src/movement/*.c) $(wildcard src/utils/*.c)
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all: $(NAME)

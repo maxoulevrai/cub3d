@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/28 14:18:59 by root             ###   ########.fr       */
+/*   Updated: 2026/09/01 00:17:38 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
-} t_color;
+}	t_color;
 
 typedef struct s_map
 {
@@ -50,7 +50,7 @@ typedef struct s_map
 	char	**grid;
 	t_color	floor;
 	t_color	ceiling;
-} t_map;
+}	t_map;
 
 typedef struct s_player
 {
@@ -60,7 +60,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-} t_player;
+}	t_player;
 
 typedef struct s_texture
 {
@@ -72,7 +72,7 @@ typedef struct s_texture
 	int		bpp;
 	int		line_len;
 	int		endian;
-} t_texture;
+}	t_texture;
 
 typedef struct s_ray
 {
@@ -93,7 +93,7 @@ typedef struct s_ray
 	int		tex_x;
 	int		tex_y;
 	int		tex_id;
-} t_ray;
+}	t_ray;
 
 typedef struct s_mlx
 {
@@ -104,7 +104,7 @@ typedef struct s_mlx
 	int		bpp;
 	int		line_len;
 	int		endian;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_game
 {
@@ -112,17 +112,33 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	texture[TEX_COUNT];
-	int		key[KEY_COUNT];
+	int			key[KEY_COUNT];
 	int			config_mask;
 	double		move_speed;
 	double		rot_speed;
-	int		quit;
-} t_game;
+	int			quit;
+}	t_game;
+
+union u_callback
+{
+	int	(*mlx_callback)(void);
+	int	(*close_callback)(t_game *game);
+	int	(*key_callback)(int keycode, void *param);
+	int	(*loop_callback)(void *param);
+};
 
 int		init_game(t_game *game);
 int		init_mlx(t_game *game);
 int		parse_file(t_game *game, char *path);
 int		parse_map(t_game *game, char **lines, int count);
+int		read_map_file(char *path, char ***lines_ptr, int *count_ptr);
+int		parse_config_line(t_game *game, char *line);
+int		parse_color_line(t_game *game, char *line, int is_floor);
+int		validate_map_shape(t_game *game, char **grid, int count);
+int		locate_player(t_game *game, char **grid, int count);
+int		map_is_closed(char **grid, int height);
+int		map_set_player(t_game *game, char direction, int x, int y);
+void	init_texture_defaults(t_game *game);
 void	draw_background(t_game *game);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 int		load_textures(t_game *game);
@@ -131,6 +147,10 @@ int		render_frame(t_game *game);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 int		game_loop(t_game *game);
+int		hook_key_press(int keycode, void *param);
+int		hook_key_release(int keycode, void *param);
+int		hook_game_loop(void *param);
+void	set_mlx_hooks(t_game *game);
 void	move_player(t_game *game);
 void	rotate_player(t_game *game, double angle);
 int		close_game(t_game *game);

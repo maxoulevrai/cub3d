@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_header.h                                       :+:      :+:    :+:   */
+/*   init_defaults.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/31 00:00:00 by yzidani           #+#    #+#             */
-/*   Updated: 2026/08/31 23:52:27 by yzidani          ###   ########.fr       */
+/*   Updated: 2026/09/01 00:00:19 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_HEADER_H
-# define LIB_HEADER_H
+#include "cub3d.h"
 
-# include "includes/ft_fprintf.h"
-# include "includes/ft_printf.h"
-# include "includes/get_next_line.h"
-# include "includes/libft.h"
+void	init_texture_defaults(t_game *game)
+{
+	int	index;
 
-#endif
+	index = 0;
+	while (index < TEX_COUNT)
+	{
+		game->texture[index].path = NULL;
+		game->texture[index].img = NULL;
+		game->texture[index].addr = NULL;
+		game->texture[index].width = 0;
+		game->texture[index].height = 0;
+		game->texture[index].bpp = 0;
+		game->texture[index].line_len = 0;
+		game->texture[index].endian = 0;
+		index++;
+	}
+}
