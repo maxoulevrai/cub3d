@@ -6,30 +6,30 @@
 /*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 00:00:00 by yzidani           #+#    #+#             */
-/*   Updated: 2026/09/01 00:17:38 by yzidani          ###   ########.fr       */
+/*   Updated: 2026/09/01 01:24:35 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	get_cell(char **grid, int count, int x, int y)
+static int	is_out_of_bounds(char **grid, int count, int x, int y)
 {
 	if (y < 0 || y >= count)
-		return (' ');
+		return (1);
 	if (x < 0 || (size_t)x >= ft_strlen(grid[y]))
-		return (' ');
-	return (grid[y][x]);
+		return (1);
+	return (0);
 }
 
 static int	cell_is_closed(char **grid, int count, int x, int y)
 {
-	if (get_cell(grid, count, x, y - 1) == ' ')
+	if (is_out_of_bounds(grid, count, x, y - 1))
 		return (0);
-	if (get_cell(grid, count, x, y + 1) == ' ')
+	if (is_out_of_bounds(grid, count, x, y + 1))
 		return (0);
-	if (get_cell(grid, count, x - 1, y) == ' ')
+	if (is_out_of_bounds(grid, count, x - 1, y))
 		return (0);
-	if (get_cell(grid, count, x + 1, y) == ' ')
+	if (is_out_of_bounds(grid, count, x + 1, y))
 		return (0);
 	return (1);
 }

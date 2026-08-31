@@ -6,7 +6,7 @@
 /*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/31 00:00:00 by yzidani           #+#    #+#             */
-/*   Updated: 2026/09/01 00:00:00 by yzidani          ###   ########.fr       */
+/*   Updated: 2026/09/01 01:21:11 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ static int	is_texture(char *line)
 		|| ft_strncmp(line, "EA ", 3) == 0);
 }
 
+static void	normalize_tabs(char *line)
+{
+	int	index;
+
+	index = 0;
+	while (line[index] != '\0')
+	{
+		if (line[index] == '\t')
+			line[index] = ' ';
+		index++;
+	}
+}
+
 int	parse_config_line(t_game *game, char *line)
 {
 	char	*trimmed;
@@ -60,6 +73,7 @@ int	parse_config_line(t_game *game, char *line)
 	trimmed = ft_strtrim(line, " \t\r\n");
 	if (trimmed == NULL || trimmed[0] == '\0')
 		return (free(trimmed), 1);
+	normalize_tabs(trimmed);
 	if (is_texture(trimmed))
 		ret = parse_texture(game, trimmed);
 	else if (ft_strncmp(trimmed, "F ", 2) == 0)

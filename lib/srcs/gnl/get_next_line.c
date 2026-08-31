@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maleca <maleca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 20:06:27 by maleca            #+#    #+#             */
-/*   Updated: 2025/09/07 20:06:33 by maleca           ###   ########.fr       */
+/*   Updated: 2026/09/01 01:19:24 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	*get_next_line(int fd, char *LIMITER)
 	char		*next_line;
 	int			flag;
 
+	(void)LIMITER;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 	{
 		if (stash)
@@ -112,7 +113,5 @@ char	*get_next_line(int fd, char *LIMITER)
 		return (free(stash), NULL);
 	next_line = extract_line(stash);
 	stash_cleanup(&stash);
-	if (flag == 1 || !ft_strncmp(next_line, LIMITER, ft_strlen(LIMITER)))
-		free(stash);
 	return (next_line);
 }

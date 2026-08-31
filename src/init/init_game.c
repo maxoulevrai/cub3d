@@ -6,7 +6,7 @@
 /*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/08/31 23:53:55 by yzidani          ###   ########.fr       */
+/*   Updated: 2026/09/01 01:03:29 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	init_player_defaults(t_game *game)
 	game->player.dir_y = 0.0;
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
-	game->move_speed = 0.08;
-	game->rot_speed = 0.05;
+	game->move_speed = 0.05;
+	game->rot_speed = 0.02;
 	game->quit = 0;
 }
 

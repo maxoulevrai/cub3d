@@ -6,7 +6,7 @@
 /*   By: yzidani <yzidani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 00:00:00 by root              #+#    #+#             */
-/*   Updated: 2026/09/01 00:17:38 by yzidani          ###   ########.fr       */
+/*   Updated: 2026/09/01 01:01:31 by yzidani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
@@ -26,15 +27,15 @@
 # define WIN_HEIGHT 720
 # define TEX_SIZE 64
 # define TEX_COUNT 4
-# define KEY_COUNT 256
+# define KEY_COUNT 65536
 # define ERR_MSG "Error\n"
-# define KEY_W 25
-# define KEY_A 38
-# define KEY_S 39
-# define KEY_D 40
-# define KEY_LEFT 113
-# define KEY_RIGHT 114
-# define KEY_ESC 9
+# define KEY_W XK_w
+# define KEY_A XK_a
+# define KEY_S XK_s
+# define KEY_D XK_d
+# define KEY_LEFT XK_Left
+# define KEY_RIGHT XK_Right
+# define KEY_ESC XK_Escape
 
 typedef struct s_color
 {
